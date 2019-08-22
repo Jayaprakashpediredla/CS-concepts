@@ -1,0 +1,82 @@
+package practise.programs;
+/*
+ * input1 = Today is a nice day
+ * input2 = 41
+ * output:cein daydoT
+ * constraints:
+ * input2 should be >=11 and <=99 and both digits should be non zero
+ * input1 contains all alphabets and space character
+ */
+
+import java.util.Scanner;
+public class Exam1 
+{
+	public static String valid(String input1,int input2)
+	{
+		String result = "";
+		if(input2 >= 11 && input2 <= 99 && input2%10 != 0 && (input2/10)%10 != 0)
+		{
+			String str[] = input1.split(" ");
+			
+			String word = str[input2%10 - 1];
+			String result1 = "";
+			if(word.length()%2 == 0)
+			{
+				result1 = result1 + word.substring(word.length()/2, word.length());
+				for(int i = (word.length()/2)-1 ; i>=0;i--)
+				{
+					result1 = result1 + word.charAt(i);
+				}
+			}
+			else
+			{
+				result1 = result1 + word.substring(word.length()/2, word.length());
+				for(int i = (word.length()/2) ; i>=0;i--)
+				{
+					result1 = result1 + word.charAt(i);
+				}
+			}
+			
+			
+			input2/=10;
+			word = str[input2%10 - 1];
+			String result2 = "";
+			
+			if(word.length()%2 == 0)
+			{
+				result2 = result2 + word.substring(word.length()/2, word.length());
+				for(int i = (word.length()/2)-1 ; i>=0;i--)
+				{
+					result2 = result2 + word.charAt(i);
+				}
+			}
+			else
+			{
+				result2 = result2 + word.substring(word.length()/2, word.length());
+				for(int i = (word.length()/2) ; i>=0;i--)
+				{
+					result2 = result2 + word.charAt(i);
+				}
+			}
+			result = result2 + " " + result1;
+			
+		}
+		else
+		{
+			return "Error";
+		}
+		return result;
+	}
+	public static void main(String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the String: ");
+		String s = sc.nextLine();
+		System.out.println("Enter the number");
+		int n = sc.nextInt();
+		System.out.println(valid(s,n));
+		
+
+	}
+
+}
