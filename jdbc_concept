@@ -1,0 +1,54 @@
+jdbc is an api which is having the package in which contains related interfaces and classes.
+Types of drivers
+
+1) JDBC-ODBC Bridge Driver (from java 1.8 there no jdbc odbc concept because of platform dependency)
+
+2) Native API Driver ( all jdbc calls are converted into native function calls(partial c & java))
+
+3) Middleware OR Networking protocol Driver (pure java code) [ without internet we can't do anything ]
+
+4) Thin driver (pure java code) - availabe as .jar file 
+
+
+MySQL	com.mysql.jdbc.Driver
+
+ORACLE	oracle.jdbc.driver.OracleDriver
+
+
+jad javadecompiler 
+
+jad -s .java OracleDriver.class
+
+
+connection Establishment steps:
+
+-> import java.sql.*; 
+    
+-> Load (OR) Register the driver  //com.mysql.jdbc.Driver  //oracle.jdbc.driver.OracleDriver
+
+-> open the Connection //ipaddress //port_number //service_name //user_name  //password
+
+-> prepare the statements to execute queries
+
+-> execute queries and store the result
+
+-> close the connection
+
+Interfaces in JDBC:
+
+1.connection
+2.statement
+3.preparedStatement
+4.callable statement
+5.ResultSet
+6.ResultSetMetaData
+7.Driver
+
+classes in JDBC
+
+1.Date
+2.Driver Manager
+3.SQLPermission
+
+
+SQLException
