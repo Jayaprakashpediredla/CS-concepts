@@ -1,0 +1,49 @@
+ String x[]={input1,input2,input3};
+		String x1="";
+		String x2="";
+		String x3="";
+		String t;
+		for(int i=0;i<x.length;i++)
+		{
+		 t=x[i];
+			int y=t.length()/3;
+			if(t.length()%3==0)
+			{
+				x1=x1+t.substring(0,y);
+
+				x2=x2+t.substring(y,y+y);
+				x3=x3+t.substring(y+y,t.length());
+			}
+			else if(t.length()%3==2)
+			{
+				 y=t.length()/3+1;
+				 int s=t.length()-(y+y);
+				x1=x1+t.substring(0,y);
+				x2=x2+t.substring(y,s+y);
+				x3=x3+t.substring(s+y,t.length());
+			}
+			else
+			{
+				y=t.length()/3;
+				x1=x1+t.substring(0,y);
+				int s=t.length()-(y+y);
+				x2=x2+t.substring(y,s+y);
+				x3=x3+t.substring(s+y,t.length());
+			}
+		}
+		String w1="";
+		for(int i=0;i<x3.length();i++)
+		{
+			char w=x3.charAt(i);
+			if(Character.isUpperCase(w))
+			{
+				w1=w1+Character.toLowerCase(w);
+			}
+			else
+			{
+				w1=w1+Character.toUpperCase(w);
+			}
+		}
+	Result r=new Result(x1,x2,w1);
+	return r;
+Displaying encode string.txt.
