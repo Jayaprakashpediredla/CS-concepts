@@ -1,0 +1,93 @@
+JUNIT is an open sourse testing frame work in java.
+JUnit test cases are Java classes that contain one or more Unit test methos.
+
+1-->create new PROJECT
+2-->ADD JUnit.jar to the CLASSPATH.
+3-->create new Java class (say Calculator) in a package.
+4-->add 2 methods add() sub() to calculator class.
+
+
+package junit.first;
+import STATIC org.junit.Assert.*;
+import org.junit.Test;
+public class CalculatorTest
+{
+	@Test
+	public void testAdd()
+	{
+		Calculator c=new Calculator();
+		assertEquals(20,c.add(10,20));
+	}
+	@Test
+	public void testSub()
+	{
+		Calculator c=new Calculator();
+		assertEquals(20,c.sub(100,80));
+	}
+}
+
+
+
+import STATIC org.junit.Assert.*;
+import org.junit.Test;
+
+aasertEquals() method is statically imported method.
+
+***Junit test methos***
+-->All test methods should be marked with annotation @Test (@org.junit.Test)
+-->All JUnit methods should be "public" methods.
+-->Return type should be void.
+-->Test method need not start with Test keyword.
+
+
+Assert methods & Annotations
+
+assertArrayEquals() - to test two arrays are equal or not.(expected array==resultant array)
+
+assertEquals() - to compare objects for their equality.(use AutoBoxing)
+
+assertTrue(), assertFalse(), assertNull(), assertNotNull(), assertSame(), assertNotSame()
+
+
+if more than one tests that you design needs a common set of objects.
+JUnit framework provides two special methods setUp() AND tearDown().(to INITIALIZE and CLEAN-UP)
+
+setUp()     }
+            }	--> Fixtures()
+tearDown()  }
+
+before() AND after() methods are STATIC.
+
+@Ignore --> used for test cases you wanted to Ignore.
+eg: @Ignore("Not Ready to Run")
+
+
+Two parameters are optional for @Test annotation
+
+Example:
+@Test(expected=IndexOutOfBoundsException.class)
+public void checkOutOfBounds()
+{
+	new ArrayList<String>().get(1);
+}
+
+@Test(timeout=1000)
+public void infinityCheck()
+{
+	while(true);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
