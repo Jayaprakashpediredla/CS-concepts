@@ -1,0 +1,148 @@
+selecting different values from a column.
+SELECT DISTINCT city from country;
+
+
+select all records where City is NOT "Berlin".
+Select * from Customers WHERE NOT city="Berlin" AND PostalCode==12345;
+
+SORT the result - use ORDER BY
+SELECT * FROM Customers ORDER BY City;
+SELECT * FROM Customers ORDER BY City desc; (for descending order)
+
+
+SORT result alphabetically, first by Country then by City.
+SELECT * FROM Customers ORDER BY Country,City;
+
+
+INSERT COMMAND:
+INSERT INTO Customers(cName,cAddress,city) VALUES('prakash','Bobbili','vizag');
+
+
+NULL:
+SELECT * from Customers WHERE PostalCode IS Null;
+SELECT * from Customers WHERE PostalCode IS NOT Null;
+
+
+UPDATE:
+UPDATE Customers SET city='vijayawada'; //updating column of all the records
+UPDATE Customers SET city='vijayawada' WHERE state='Andhra Pradesh';
+UPDATE Customers SET city='vijayawada',state='Andhra Pradesh' WHERE country='India';
+
+
+DELETE:
+DELETE FROM Customers WHERE country='Pakistan';
+DELETE FROM Customers; //deletes all the records
+
+
+FUNCTIONS:
+
+MIN :
+SELECT MIN(Price) FROM Products;
+
+MAX :
+SELECT MAX(Price) FROM Products;
+
+COUNT - to count no of records
+SELECT COUNT(*) FROM Products WHERE Price>1000;
+
+AVG :
+SELECT AVG(Price) FROM Products;
+
+SUM :
+SELECT SUM(Price) FROM Products;
+
+
+LIKE : column starts with the letter "a".
+SELECT * from Customers WHERE City LIKE 'a%';// starts with 'a'
+SELECT * from Customers WHERE City LIKE '%a';// ends with 'a'
+SELECT * from Customers WHERE City LIKE 'a%b';// starts with 'a' & ends with 'b'
+SELECT * from Customers WHERE City NOT LIKE 'a%';// should not start w
+SELECT * from Customers WHERE City LIKE '_a%'; //second letter is 'a'
+Select all records where the first letter of the City is an "a" or a "c" or an "s".
+SELECT * from Customers WHERE City LIKE '[acs]%';//starts with either 'a' or 'c' or 's'
+SELECT * from Customers WHERE City LIKE '[a-f]%';// any letter from a to f.
+SELECT * from Customers WHERE City LIKE '[^acf]%';//shouls not start with 'a','c','f'
+
+
+IN :
+SELECT * from Customers WHERE Country IN ('France','Norway');
+SELECT * from Customers WHERE Country NOT IN ('France','Norway');
+
+
+BETWEEN :
+SELECT * from Customers WHERE Price BETWEEN 10 AND 20;
+SELECT * from Customers WHERE Price NOT BETWEEN 10 AND 20;
+SELECT * from Customers WHERE Price BETWEEN 'Galilio'AND 'Titanic'; // between alphabetical order
+
+
+ALIAS :
+SELECT CustomerName,Address,PostalCode AS Pno FROM Customers;
+
+
+JOIN :
+join the two tables Orders and Customers, using the CustomerID field in both tables as the relationship between the two tables.
+SELECT * FROM Orders LEFT JOIN Customers ON Orders.CustomerID=Customers.CustomerId;
+
+Choose the correct JOIN clause to select all records from the two tables where there is a match in both tables.
+SELECT * FROM Orders INNER JOIN Customers ON Orders.CustomerID=Customers.CustomerId;
+
+Choose the correct JOIN clause to select all the records from the Customers table plus all the matches in the Orders table.
+SELECT * FROM Orders RIGHT JOIN Customers ON Orders.CustomerID=Customers.CustomerId;
+
+
+GROUP BY :
+List the number of customers in each country.
+SELECT COUNT(CustomerID) FROM Customers GROUP BY Country;
+
+***List the number of customers in each country, ordered by the country with the most customers first.
+SELECT COUNT(CustomerId),Country FROM Customers GROUP BY Country ORDER BY COUNT(CustomerID) DESC;
+
+
+
+CREATE DATABASE :
+CREATE DATABASE databaseName;
+
+
+DELETE DATABASE :
+DROP DATABASE databaseName;
+
+
+DELETE a TABLE:
+DROP table tableName;
+
+
+TRUNCATE: - to delete all data inside a table
+TRUNCATE table tableName;
+
+ALTER : to add a column of another datatype
+ALTER table Persons ADD Birthday DATE;
+
+to DELETE a column
+ALTER table Persons DROP COLUMN Birthday
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
