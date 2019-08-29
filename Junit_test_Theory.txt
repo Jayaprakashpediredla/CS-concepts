@@ -78,16 +78,3 @@ public void infinityCheck()
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
