@@ -1,0 +1,354 @@
+<!---JSON stands for JavaScript Object Notation--- 
+	lightweight data-interchange
+    JSON format is text only, it can easily be sent to and from a server
+    
+    ---JSON objects are surrounded by curly braces {}.
+    ---JSON objects are written in key/value pairs.
+    ---Keys must be strings, and values must be a valid JSON data type (string, 		number, object, array, boolean or null).
+    ---Keys and values are separated by a colon.
+    ---Each key/value pair is separated by a comma.
+   
+----------------------------------------------------------------------------------------------------------------------------------
+    
+    JavaScript has a built in function to convert a string, written in JSON 	format, into native JavaScript objects:
+
+	JSON.parse()
+
+	So, if you receive data from a server, in JSON format, you can use it like 		any other JavaScript object.
+    
+    Curly braces hold objects    {objects}
+	Square brackets hold arrays  [arrays]
+---------------------------------------------------
+    JSON
+{ "name":"John" }
+
+JavaScript
+{ name:"John" }
+
+---------------------------------------------------
+The same way JavaScript objects can be used as JSON, JavaScript arrays can also be used as JSON.
+JSON Files
+    The file type for JSON files is ".json"
+    The MIME type for JSON text is "application/json"
+    
+    
+Both JSON and XML can be used to receive data from a web server.
+
+XML has to be parsed with an XML parser. JSON can be parsed by a standard JavaScript function.
+
+For AJAX applications, JSON is faster and easier than XML:
+
+--------------------------------------------------------------
+Using XML
+
+    Fetch an XML document
+    Use the XML DOM to loop through the document
+    Extract values and store in variables
+
+Using JSON
+
+    Fetch a JSON string
+    JSON.Parse the JSON string
+
+
+-----------------------------------------------------------
+** JSON values CANNOT be one of the following data types:
+
+    a function
+    a date
+    undefined
+-----------------------------------------------------------
+
+Strings in JSON must be written in double quotes.
+
+JSON Objects: Values in JSON can be objects.
+
+Example
+{
+"employee":{ "name":"John", "age":30, "city":"New York" }
+}
+
+JSON Arrays: Values in JSON can be arrays.
+
+Example
+{
+"employees":[ "John", "Anna", "Peter" ]
+}
+
+When receiving data from a web server, the data is always a string.
+
+Parse the data with JSON.parse(), and the data becomes a JavaScript object.
+
+
+Imagine we received this text from a web server:
+'{ "name":"John", "age":30, "city":"New York"}'
+
+Use the JavaScript function JSON.parse() to convert text into a JavaScript object:
+var obj = JSON.parse('{ "name":"John", "age":30, "city":"New York"}');
+
+
+Use the JavaScript object in your page:
+
+Example:
+<p id="demo"></p>
+<script>
+document.getElementById("demo").innerHTML = obj.name + ", " + obj.age;
+</script> 
+
+
+JSON From the Server
+You can request JSON from the server by using an AJAX request.
+
+
+Use the XMLHttpRequest to get data from the server:
+
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    var myObj = JSON.parse(this.responseText);
+    document.getElementById("demo").innerHTML = myObj.name;
+  }
+};
+xmlhttp.open("GET", "json_demo.txt", true);
+xmlhttp.send(); 
+
+-------------------------------------------------------------------------------
+json_demo_array.txt   has the below data.
+[ "Ford", "BMW", "Audi", "Fiat" ]
+
+The JSON returned from the server is an array:
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    var myArr = JSON.parse(this.responseText);
+    document.getElementById("demo").innerHTML = myArr[0]; --------
+  }
+};
+xmlhttp.open("GET", "json_demo_array.txt", true);
+xmlhttp.send(); 
+
+---------------------------------------------------------------------------------------
+Parsing Dates
+
+Date objects are not allowed in JSON.
+
+If you need to include a date, write it as a string.
+
+You can convert it back into a date object later:
+Example
+
+Convert a string into a date:
+var text = '{ "name":"John", "birth":"1986-12-14", "city":"New York"}';
+var obj = JSON.parse(text);
+obj.birth = new Date(obj.birth);
+
+document.getElementById("demo").innerHTML = obj.name + ", " + obj.birth; 
+
+
+--------------------------------------------------------------------------------------------------------
+
+Convert a string into a date, using the reviver function:
+
+var json_from_server = '{ "name":"John", "birth":"1986-12-14", "city":"New York"}';
+var obj = JSON.parse(json_from_server, function (key, value) 
+{
+  if (key == "birth") 
+  {
+  	return new Date(value);
+  } 
+  else 
+  {
+    return value;
+  }
+});
+
+document.getElementById("demo").innerHTML = obj.name + ", " + obj.birth; 
+
+-------------------------------------------------------------------------------------------------------
+
+Parsing Functions
+
+Functions are not allowed in JSON.
+If you need to include a function, write it as a string.
+
+Example:
+Convert a string into a function:
+var text = '{ "name":"John", "age":"function () {return 30;}", "city":"New York"}';
+var obj = JSON.parse(text);
+obj.age = eval("(" + obj.age + ")"); <----- eval() function to parse functions
+
+document.getElementById("demo").innerHTML = obj.name + ", " + obj.age(); 
+
+-----------------------------------------------------------------------------------------------------
+
+JSON.stringify()
+
+var obj = { name: "John", age: 30, city: "New York" };
+
+var myJSON = JSON.stringify(obj);
+
+
+JSON.stringify()
+
+var arr = [ "John", "Peter", "Sally", "Jane" ];
+
+var myJSON = JSON.stringify(arr);
+
+----------------------------------------------------------------------------------------
+Accessing Object Values
+
+myObj = { "name":"John", "age":30, "car":null };
+
+x = myObj.name;
+
+x = myObj["name"];
+
+
+LOOPING:
+
+myObj = { "name":"John", "age":30, "car":null };
+for (x in myObj) 
+{
+  document.getElementById("demo").innerHTML += x;
+} 
+
+
+Nested JSON Objects
+
+Values in a JSON object can be another JSON object.
+Example
+myObj = {
+  "name":"John",
+  "age":30,
+  "cars": {
+    "car1":"Ford",
+    "car2":"BMW",
+    "car3":"Fiat"
+  }
+ }
+ACCESS nested JSON
+
+You can access nested JSON objects by using the dot notation or bracket notation:
+
+x = myObj.cars.car2;
+
+
+Delete Object Properties
+
+Use the delete keyword to delete properties from a JSON object:
+
+delete myObj.cars.car2; 
+
+------------------------------------------------------------------------------------------
+
+Arrays in JSON Objects
+
+Arrays can be values of an object property:
+Example
+{
+"name":"John",
+"age":30,
+"cars":[ "Ford", "BMW", "Fiat" ]
+}
+
+x = myObj.cars[0];
+
+LOOPING:
+for (i in myObj.cars) {
+  x += myObj.cars[i];
+} 
+
+Nested Arrays in JSON Objects
+
+Values in an array can also be another array, or even another JSON object:
+Example
+myObj = {
+  "name":"John",
+  "age":30,
+  "cars": [
+    { "name":"Ford", "models":[ "Fiesta", "Focus", "Mustang" ] },
+    { "name":"BMW", "models":[ "320", "X3", "X5" ] },
+    { "name":"Fiat", "models":[ "500", "Panda" ] }
+  ]
+ }
+
+---------------------------------------------------------------------------
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Looping through arrays inside arrays.</p>
+
+<p id="demo"></p>
+
+<script>
+var myObj, i, j, x = "";
+
+myObj = 
+{
+  "name":"John",
+  "age":30,
+  "cars": 
+  [
+    {"name":"Ford", "models":["Fiesta", "Focus", "Mustang"]},
+    {"name":"BMW", "models":["320", "X3", "X5"]},
+    {"name":"Fiat", "models":["500", "Panda"] }
+  ]
+}
+
+
+for (i in myObj.cars) 
+{
+  x += "<h2>" + myObj.cars[i].name + "</h2>";
+  for (j in myObj.cars[i].models) 
+  {
+    x += myObj.cars[i].models[j] + "<br>";
+  }
+}
+
+document.getElementById("demo").innerHTML = x;
+</script>
+
+</body>
+</html>
+
+---------------------------------------------------------------------------
+
+
+
+
+--->
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Store and retrieve data from local storage.</h2>
+
+<p id="demo"></p>
+
+<script>
+var myObj, myJSON, text, obj;
+
+// creating js object
+myObj = { name: "John", age: 31, city: "New York" };
+
+//converting js object to string format and then sent to JSON 
+myJSON = JSON.stringify(myObj);
+
+//storing JSON object
+localStorage.setItem("testJSON", myJSON);
+
+// Retrieving from JSON
+text = localStorage.getItem("testJSON");
+
+//parsing JSON file
+obj = JSON.parse(text);
+
+//displaying the required data
+document.getElementById("demo").innerHTML = obj.name;
+</script>
+
+</body>
+</html>
