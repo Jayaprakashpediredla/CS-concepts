@@ -1,0 +1,179 @@
+/*********** C# Tutorial ***************/
+
+C# vs .NET
+
+-> c# is a programming language.
+-> c# is CASE-SENSITIVE.
+-> .NET is a framework for building applications on windows (not only for c#)
+
+.NET framework consists of two components 
+1) CLR (Common Language Runtime)
+2) Class Library
+
+c/c++ -> translate to Native Code (platform dependent - runs on same Architecture)
+
+In C#  :
+
+C# code ------> Intermediate Language Code -------(CLR takes care of this task [JIT compiler])-----> Native code (same as Java)
+
+********************************************************************************************************************************
+
+Architecture of .NET applications :
+
+C# applications consists of building blocks called Classes. 
+classes collaborate at runtime and provide some functionality.
+class -->(Attributes + Functions)
+
+NAMESPACE --> (class1 , class2 ,................class n) To Organize classes we use NameSpace (container for relative classes)
+
+(NameSpace for database , for working with graphics and images , for security)
+
+ASSEMBLY (DLL or EXE)-->(Namespace1 , Namespace2,...............Namespace n)  * DLL -> Dynamically Linked Library.
+
+APPLICATION --->(Assembly1 , Assembly2..................Assembly n)
+
+
+***********************************************************************************************************************************
+FILE name:  program.cs
+
+using System;
+
+namespace HelloWorld
+{
+	class program
+	{
+		static void Main(String[] args)
+		{
+			Console.WriteLine("hello world!");
+		}
+	
+	}
+
+}
+
+
+* USING keyword is used to use classes from different NameSpace.
+
+*****************************************************************
+variable and constant
+
+variable :a name given to a storage location in memory
+
+---> Value Types [ Not-Nullable ]	(int , float , double , structs , enums.......)
+
+---> Reference Types [ Nullable ]	(Interface, class,delegates,arrays........)
+
+
+* var keyword can also be used.
+
+int number;
+
+int number=23;
+
+const float Pi=3.14f;
+
+Primitive types:
+
+C#              .NET
+---------------------------------
+byte 		Byte		1
+short 		Int16		2
+int		Int32		4
+long 		Int64		8
+float		Single		4
+double		Double		8
+decimal		Decimal		16
+char 		Char		2
+bool		Boolean 	1
+
+
+for float we should mention f at last otherwise it considers it as double.
+eg:  1.2  ----> double
+     1.2f ----> float
+     1.2m ----> decimal
+
+
+Non-primitive types:
+-> String
+-> Array
+-> Enum
+-> Class
+
+***********************************************************************************************************************************
+OVERFLOWING:
+
+byte num=255;
+num=num+1 // 'ZERO' will be stored in num variable because we don't have overflow checking by default.
+
+Explicit overflow check:
+
+checked
+{
+	byte num=255;
+	num=num+1;   // in this case exception will be thrown
+}
+
+
+Type Conversion:
+
+Implicit conversion : 
+			byte b=1;
+			int i=b;
+
+Explicit conversion :   int i=1;
+			byte b=i; // won't compile
+			byte b=(byte)i; // will compile 
+
+
+for non-compatible types : 	String str="1";    int i=(int)string; // won't compile
+				
+				int i= Convert.ToInt32(str);
+					OR
+				int j= int.Parse(str);
+
+Methods in Convert class :      .ToByte()
+				.ToInt16()		
+				.ToInt32()
+				.ToInt64()
+
+
+
+Operators in C# :	
+
+->Arithmetic	(+,-,*,/,++,--)
+->comparision	(==,!=,>,<,<=,>=s)
+->Assignment	(=,+=,-=,*=,/=)
+->Logical	(&&,||,!)
+->Bitwise	(&,|)
+
+
+************************************************************************************************************************
+
+Reading & writing to CONSOLE :
+
+String str=Console.ReadLine();
+Console.WriteLine("Hello {0}",str);
+
+
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
