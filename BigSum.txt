@@ -1,0 +1,45 @@
+String l="";
+		int n1=input1.length(),n2=input2.length(),carry=0,x,i,j;
+		if(n1>=n2)
+		{
+			for( i=n2-1,j=n1-1;i>=0;i--,j--)
+			{
+				x=Character.getNumericValue(input2.charAt(i))+Character.getNumericValue(input1.charAt(j))+carry;
+				carry=x/10;
+				x=x%10;
+				l=l+Integer.toString(x);
+				
+			}
+			int y=0;
+			for(int k=j;k>=0;k--)
+			{
+				y=Character.getNumericValue(input1.charAt(k))+carry;
+				carry=y/10;
+				y=y%10;
+				l=l+Integer.toString(y);
+			}
+			
+		}
+		else
+		{
+			for( i=n1-1,j=n2-1;i>=0;i--,j--)
+			{
+				x=Character.getNumericValue(input1.charAt(i))+Character.getNumericValue(input2.charAt(j))+carry;
+				carry=x/10;
+				x=x%10;
+				l=l+Integer.toString(x);
+				
+			}
+			int y=0;
+			for(int k=j;k>=0;k--)
+			{
+				y=Character.getNumericValue(input2.charAt(k))+carry;
+				carry=y/10;
+				y=y%10;
+				l=l+Integer.toString(y);
+			}
+		}
+		StringBuffer sb = new StringBuffer(l);
+		sb.reverse();
+		String l1=sb.toString();
+		return l1;

@@ -1,0 +1,28 @@
+int[] a=new int[100];
+		int j=0;
+		int[] ar=new int[10];
+		for(int f=0;f<10;f++)
+		{
+			ar[f]=0;
+		}
+		for(int i:input1)
+		{
+			while(i>0)
+			{
+				a[j]=i%10;
+				ar[a[j]]++;
+				System.out.println(a[j]);
+				j++;
+				i=i/10;
+			}
+		}
+		int max=0,q,v=0;
+		for(q=0;q<10;q++)
+		{
+			if(max<=ar[q])
+			{
+				max=ar[q];
+				v=q;
+			}
+		}
+		return v;
