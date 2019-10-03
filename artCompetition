@@ -1,0 +1,20 @@
+#include<stdio.h>
+void printnumbers(int);
+int main()
+{
+    int n;
+    scanf("%d",&n);
+    printnumbers(n);
+    return 0;
+}
+void printnumbers(int n)
+{
+    static int i=1;
+    //printf("%d ",i);
+    if(i<=n)
+    {
+        printf("%d ",i);
+        i++;
+        printnumbers(n);
+    }
+}
